@@ -1,4 +1,4 @@
-/*Widgets*/
+
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 
 /*colors*/
@@ -6,16 +6,22 @@ $grey-dark: #636468;
 $grey-light: #A0ADBA;
 $grey-lighter: #F4F4F4;
 
+$red: #F91D41;
+$blue: #1EA7F8;
+$orange: #FCB154;
+$green: #00B7A7;
+
 $color-text: $grey-dark;
 $color-text-accent: $grey-light;
 $color-light: white;
 
 
 /*spacing*/
-$space: 15;
-$space-ver: $space+px 0;
-
+$spaceNum: 15;
 $chat-thumb-size: 80;
+
+$space: $spaceNum+px;
+$space-ver: $space 0;
 
 body{
     background-color: #F1F4F7;
@@ -35,12 +41,12 @@ body{
         .header{
             font-size: 21px;
             color: $color-text;
-            padding-top: $space+px;
-            padding-bottom: $space+px;
+            padding-top: $space;
+            padding-bottom: $space;
             border-bottom: 1px solid $grey-lighter;
             i{
                 font-size: 26px;
-                margin-right: $space+px; 
+                margin-right: $space; 
             }
         }
     }  
@@ -56,27 +62,26 @@ body{
             text-align: center;
             font-size: 32px;
             &.shopping-bag{
-                background-color: #1EA7F8;
+                background-color: $blue;
             }
             &.comment{
-                background-color: #FCB154;
+                background-color: $orange;
             }
             &.user{
-                background-color: #00B7A7;
+                background-color: $green;
             }
             &.tachometer{
-                background-color: #F91D41;
+                background-color: $red;
             }
         }
     }
 
     .data{
         text-align: center;
-        padding: $space+px;
-            @media (min-width: 768px){
-                text-align: left;
-            }
-        
+        padding: $space;
+        @media (min-width: 768px){
+            text-align: left;
+        }
         .count{
             font-size: 26px;
             line-height: 26px;
@@ -90,16 +95,15 @@ body{
 }
 
 .chat-component{
-   
     .chat-messages{
         max-height: 250px;
         overflow-y: scroll;
         .line{
             clear: both;
-            margin: $space+px;
+            margin: $space;
             position: relative;
             border-bottom: 1px solid $grey-lighter;
-            min-height: $space+$chat-thumb-size+px;
+            min-height: $spaceNum+$chat-thumb-size+px;
             .portrait{
                 width: $chat-thumb-size+px;
                 height: $chat-thumb-size+px;
@@ -126,8 +130,7 @@ body{
                     .time{
                         color: $color-text-accent;
                         font-size: 10px;
-                        margin-left: $space/2+px;
-                        
+                        margin-left: $spaceNum/2+px;
                     }
                 }
                 .user-message{
@@ -135,13 +138,13 @@ body{
                 }
             }
             &.display-left{
-                padding-left: $space+$chat-thumb-size+px;
+                padding-left: $spaceNum+$chat-thumb-size+px;
                 .portrait{
                     left: 0;
                 }
             }
             &.display-right{
-                padding-right: $space+$chat-thumb-size+px;
+                padding-right: $spaceNum+$chat-thumb-size+px;
                 .portrait{
                     right: 0;
                 }
@@ -151,7 +154,7 @@ body{
 }
 
 .chat-form{
-    padding: $space+px 60px $space+px $space+px;
+    padding: $space 60px $space $space;
     position: relative;
     border-top: 1px solid $grey-lighter;
     clear: both;
@@ -164,15 +167,15 @@ body{
     button{
         display: inline-block;
         position: absolute;
-        right: $space+px;
+        right: $space;
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
         color: $color-light;
-        background-color: #84D84B;
+        background-color: $green;
         transition: all .3s ease-in-out;
         &:hover{
-            background-color: darken(#84D84B, 15%);
-            color: $color-light !important;
+            background-color: darken($green, 15%);
+            color: $color-light ;
         }
     }
 }

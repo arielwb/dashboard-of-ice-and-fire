@@ -2,9 +2,9 @@ require('normalize.css/normalize.css');
 require('styles/App.scss');
 import React from 'react';
 import 'whatwg-fetch';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip,  ResponsiveContainer } from 'recharts';
-import { NotifyResize } from 'react-notify-resize'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { NotifyResize } from 'react-notify-resize';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class WidgetsComponent extends React.Component {
     constructor(props) {
@@ -37,9 +37,9 @@ class WidgetsComponent extends React.Component {
         var widgetCol = 'col-xs-12 col-md-6 col-lg-3';
         var pageViews = parseInt(this.state.data.pageViews);
         pageViews = pageViews > 999 ? (pageViews / 1000).toFixed(1) + 'k' : pageViews;
-        var child = <div className="loader"><i className="fa fa-spinner fa-pulse fa-3x fa-fw"></i></div>;
+        var content = <div className="loader"><i className="fa fa-spinner fa-pulse fa-3x fa-fw"></i></div>;
         if (this.state.mounted) {
-            child = (
+            content = (
                 <ReactCSSTransitionGroup
                     transitionName="animation"
                     transitionAppear={true}
@@ -47,17 +47,25 @@ class WidgetsComponent extends React.Component {
                     transitionAppearTimeout={5000}
                     transitionLeaveTimeout={5000} >
                     <div className="widgets-component component">
-                        <div className={widgetCol}>{this.renderWidget('New Orders', this.state.data.newOrders, 'shopping-bag')}</div>
-                        <div className={widgetCol}>{this.renderWidget('Comments', this.state.data.comments, 'comment')}</div>
-                        <div className={widgetCol}>{this.renderWidget('New Users', this.state.data.newUsers, 'user')}</div>
-                        <div className={widgetCol}>{this.renderWidget('Page Views', pageViews, 'tachometer')}</div>
+                        <div className={widgetCol}>
+                            {this.renderWidget('New Orders', this.state.data.newOrders, 'shopping-bag')}
+                        </div>
+                        <div className={widgetCol}>
+                            {this.renderWidget('Comments', this.state.data.comments, 'comment')}
+                        </div>
+                        <div className={widgetCol}>
+                            {this.renderWidget('New Users', this.state.data.newUsers, 'user')}
+                        </div>
+                        <div className={widgetCol}>
+                            {this.renderWidget('Page Views', pageViews, 'tachometer')}
+                        </div>
                     </div>
                 </ReactCSSTransitionGroup>
             );
         }
         return (
             <div>
-                {child}
+                {content}
             </div>
         )
     }
@@ -92,8 +100,7 @@ class ChartComponent extends React.Component {
             fetch('http://dev.4all.com:3050/pageViews')
                 .then((response) => response.json())
                 .then((responseJson) => {
-                    this.setState({ data: responseJson, mounted: true });
-
+                    this.setState({ data: responseJson, mounted: true })
                 })
                 .catch((error) => {
                     console.error(error);
@@ -101,21 +108,21 @@ class ChartComponent extends React.Component {
 
         )
     }
+
     resize({ width, height }) {
         setTimeout(() => {
             var chartHeight = width > 752 ? 250 : 150;
             chartHeight = width > 1184 ? 400 : chartHeight;
             this.setState({ 'chartHeight': chartHeight });
-        }, 50);
-
+        }, 50)
     }
 
     render() {
         const blue = '#1EA7F8';
         const grey = '#F4F4F4';
-        var child = <div className="loader"><i className="fa fa-spinner fa-pulse fa-3x fa-fw"></i></div>;
+        var content = <div className="loader"><i className="fa fa-spinner fa-pulse fa-3x fa-fw"></i></div>;
         if (this.state.mounted) {
-            child = (
+            content = (
                 <ReactCSSTransitionGroup
                     transitionName="animation"
                     transitionAppear={true}
@@ -130,13 +137,22 @@ class ChartComponent extends React.Component {
                             </div>
                             <div className="header col-xs-12">
                                 <ResponsiveContainer height={this.state.chartHeight}>
-                                    <AreaChart data={this.state.data}
+                                    <AreaChart
+                                        data={this.state.data}
                                         margin={{ top: 15, right: 15, left: 15, bottom: 15 }}>
                                         <XAxis dataKey="month" fontSize={11} />
                                         <YAxis fontSize={11} tickCount={11} width={15} />
                                         <CartesianGrid stroke={grey} />
                                         <Tooltip labelStyle={{ fontSize: 14 }} itemStyle={{ fontSize: 14 }} />
-                                        <Area type='monotone' dot={{ fill: blue, stroke: 'white', r: 3, fillOpacity: 1 }} activeDot={{ r: 5 }} dataKey='views' stroke={blue} fill={blue} fillOpacity={0.3} animationEasing='linear' />
+                                        <Area
+                                            type='monotone'
+                                            dot={{ fill: blue, stroke: 'white', r: 3, fillOpacity: 1 }}
+                                            activeDot={{ r: 5 }}
+                                            dataKey='views'
+                                            stroke={blue}
+                                            fill={blue}
+                                            fillOpacity={0.3}
+                                            animationEasing='linear' />
                                     </AreaChart>
                                 </ResponsiveContainer>
                             </div>
@@ -147,7 +163,7 @@ class ChartComponent extends React.Component {
         }
         return (
             <div>
-                {child}
+                {content}
             </div>
         );
     }
@@ -177,9 +193,10 @@ class ChatComponent extends React.Component {
     }
 
     render() {
-        var messages = this.state.data.map((v) => {
+        var messages = this.state.data.map((v, i) => {
             return (
                 <ReactCSSTransitionGroup
+                    key={i}
                     transitionName="animation"
                     transitionAppear={true}
                     transitionEnterTimeout={5000}
@@ -191,9 +208,9 @@ class ChatComponent extends React.Component {
             )
         })
 
-        var child = <div className="loader"><i className="fa fa-spinner fa-pulse fa-3x fa-fw"></i></div>;
+        var content = <div className="loader"><i className="fa fa-spinner fa-pulse fa-3x fa-fw"></i></div>;
         if (this.state.mounted) {
-            child = (
+            content = (
                 <ReactCSSTransitionGroup
                     transitionName="animation"
                     transitionAppear={true}
@@ -219,7 +236,7 @@ class ChatComponent extends React.Component {
 
         return (
             <div>
-                {child}
+                {content}
             </div>
         );
     }
@@ -254,16 +271,16 @@ class ChatComponent extends React.Component {
                     'Content-Type': 'application/json'
                 },
                 credentials: 'same-origin'
-            }).then(function(response) {
-                response.status     //=> number 100–599
-                response.statusText //=> String
-                response.headers    //=> Headers
-                response.url        //=> String
-                response.text().then(function(responseText) {
+            }).then(function (response) {
+                response.status
+                response.statusText
+                response.headers
+                response.url
+                response.text().then(function (responseText) {
                     console.log(responseText);
                 })
-            }, function(error) {
-                error.message //=> String
+            }, function (error) {
+                error.message
             })
         )
     }
@@ -271,19 +288,19 @@ class ChatComponent extends React.Component {
     sendMessage(e) {
         e.preventDefault();
         var message = document.getElementById('input-message');
-        if(message.value != ''){
-          this.postMessage(message.value);
-          var messages = this.state.data;
-          messages.push({
-              'userName': 'Eu',
-              'portrait': '',
-              'message': message.value,
-              'displayPortraitLeft': true,
-              'time': '1 min ago'
-          });
-          this.setState({ data: messages })
-          this.scrollMessageBox();
-          message.value = '';
+        if (message.value != '') {
+            this.postMessage(message.value);
+            var messages = this.state.data;
+            messages.push({
+                'userName': 'Eu',
+                'portrait': '',
+                'message': message.value,
+                'displayPortraitLeft': true,
+                'time': '1 min ago'
+            });
+            this.setState({ data: messages })
+            this.scrollMessageBox();
+            message.value = '';
         }
 
     }
@@ -291,7 +308,7 @@ class ChatComponent extends React.Component {
     scrollMessageBox() {
         var objDiv = document.getElementById('chat-messages');
         setTimeout(
-            function() {
+            function () {
                 objDiv.scrollTop = objDiv.scrollHeight;
             }, 100);
     }
@@ -312,9 +329,9 @@ class AppComponent extends React.Component {
     }
 
     render() {
-        var child = <div className="loader app"><i className="fa fa-spinner fa-pulse fa-3x fa-fw"></i></div>;
+        var content = <div className="loader app"><i className="fa fa-spinner fa-pulse fa-3x fa-fw"></i></div>;
         if (this.state.mounted) {
-            child = (
+            content = (
                 <div>
                     <div className="row">
                         <h1 className="page-title col-xs-12 ">Dashboard</h1>
@@ -331,9 +348,9 @@ class AppComponent extends React.Component {
                 </div>
             );
         }
-      
+
         return (
-            <div>{child}</div>
+            <div>{content}</div>
         )
     }
 }
