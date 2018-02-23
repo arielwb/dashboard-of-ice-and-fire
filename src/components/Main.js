@@ -5,6 +5,9 @@ import React from 'react';
 import WidgetsComponent from './widgets/WidgetsComponent';
 import ChartComponent from './chart/ChartComponent';
 import ChatComponent from './chat/ChatComponent';
+import HeaderComponent from './header/HeaderComponent';
+
+import Api from '../sources/api';
 
 
 class AppComponent extends React.Component {
@@ -18,7 +21,15 @@ class AppComponent extends React.Component {
 
     componentDidMount() {
         return (
-            this.setState({ mounted: true })
+            Api.getBooks()
+                .then((responseJson) => {
+                    console.log(responseJson)
+                    this.setState({ data: responseJson, mounted: true });
+                })
+                .catch((error) => {
+                    console.error(error);
+                })
+            // this.setState({ mounted: true })
         )
     }
 
@@ -28,13 +39,13 @@ class AppComponent extends React.Component {
             content = (
                 <div>
                     <div className="row">
-                        <h1 className="page-title col-xs-12 ">Dashboard</h1>
+                        <HeaderComponent />
                     </div>
                     <div className="row">
-                        <WidgetsComponent />
+                        <WidgetsComponent books={this.state.data}/>
                     </div>
                     <div className="row">
-                        <ChartComponent />
+                        <ChartComponent books={this.state.data}/>
                     </div>
                     <div className="row">
                         <ChatComponent />

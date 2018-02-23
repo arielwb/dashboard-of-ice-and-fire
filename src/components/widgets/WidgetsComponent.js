@@ -11,12 +11,29 @@ class WidgetsComponent extends React.Component {
 
     constructor(props) {
         super(props);
+        console.log(props)
         this.state = {
             data: {
-                newOrders: 0,
-                comments: 0,
-                newUsers: 0,
-                pageViews: 0
+                books: {
+                    count: 0,
+                    label: "Total books",
+                    icon: "shopping-bag",
+                },
+                characters: {
+                    count: 0,
+                    label: "Total characters",
+                    icon: "shopping-bag",
+                },
+                totalPages: {
+                    count: 0,
+                    label: "Total pages",
+                    icon: "shopping-bag",
+                },
+                povCharacters: {
+                    count: 0,
+                    label: "Total POV characters",
+                    icon: "shopping-bag",
+                }
             },
             mounted: false
         };
@@ -24,25 +41,18 @@ class WidgetsComponent extends React.Component {
 
     componentDidMount() {
         return (
-            WidgetsSource.get()
-                .then((responseJson) => {
-                    this.setState({ data: responseJson, mounted: true });
-                })
-                .catch((error) => {
-                    console.error(error);
-                })
+            this.setState({ data: WidgetsSource.get(this.props.books, this.state.data), mounted: true })
         )
     }
 
-    getPageViews() {
-        let pageViews = parseInt(this.state.data.pageViews);
-        return pageViews > 999 ? (pageViews / 1000).toFixed(1) + 'k' : pageViews;
-    }
-
     render() {
-        let widgetCol = 'col-xs-12 col-md-6 col-lg-3';
         let content = <LoaderComponent />;
         if (this.state.mounted) {
+
+            let inner = []
+            Object.entries(this.state.data).forEach(
+                ([key, value]) => inner.push(this.renderWidget(value.label, value.count, value.icon, key)))
+
             content = (
                 <ReactCSSTransitionGroup
                     transitionName="animation"
@@ -51,18 +61,7 @@ class WidgetsComponent extends React.Component {
                     transitionAppearTimeout={5000}
                     transitionLeaveTimeout={5000} >
                     <div className="widgets-component component">
-                        <div className={widgetCol}>
-                            {this.renderWidget('New Orders', this.state.data.newOrders, 'shopping-bag')}
-                        </div>
-                        <div className={widgetCol}>
-                            {this.renderWidget('Comments', this.state.data.comments, 'comment')}
-                        </div>
-                        <div className={widgetCol}>
-                            {this.renderWidget('New Users', this.state.data.newUsers, 'user')}
-                        </div>
-                        <div className={widgetCol}>
-                            {this.renderWidget('Page Views', this.getPageViews(), 'tachometer')}
-                        </div>
+                        {inner}
                     </div>
                 </ReactCSSTransitionGroup>
             );
@@ -74,15 +73,17 @@ class WidgetsComponent extends React.Component {
         )
     }
 
-    renderWidget(text, value, icon) {
+    renderWidget(text, value, icon, key) {
         return (
-            <div className="widget box">
-                <div className={icon + ' icon col-xs-12 col-sm-2  col-lg-4'}>
-                    <i className={'fa fa-' + icon}></i>
-                </div>
-                <div className="data col-xs-12 col-sm-10  col-lg-8">
-                    <div className="count">{value}</div>
-                    <div className="legend">{text}</div>
+            <div className="col-xs-12 col-md-6 col-lg-3" key={key}>
+                <div className="widget box">
+                    <div className={icon + ' icon col-xs-12 col-sm-2  col-lg-4'}>
+                        <i className={'fa fa-' + icon}></i>
+                    </div>
+                    <div className="data col-xs-12 col-sm-10  col-lg-8">
+                        <div className="count">{value}</div>
+                        <div className="legend">{text}</div>
+                    </div>
                 </div>
             </div>
         );

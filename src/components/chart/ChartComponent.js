@@ -4,7 +4,7 @@ import React from 'react';
 import 'whatwg-fetch';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { NotifyResize } from 'react-notify-resize';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Label } from 'recharts';
 
 import ChartSource from './ChartSource';
 import LoaderComponent from '../loader/LoaderComponent';
@@ -23,13 +23,7 @@ class ChartComponent extends React.Component {
 
     componentDidMount() {
         return (
-            ChartSource.get()
-                .then((responseJson) => {
-                    this.setState({ data: responseJson, mounted: true })
-                })
-                .catch((error) => {
-                    console.error(error);
-                })
+            this.setState({ data:  ChartSource.get(this.props.books), mounted: true })
         )
     }
 
@@ -43,6 +37,8 @@ class ChartComponent extends React.Component {
 
     render() {
         const blue = '#1EA7F8';
+        const green = '#00C49F';
+        const yellow = '#FFBB28';
         const grey = '#F4F4F4';
         let content = <LoaderComponent />;
         if (this.state.mounted) {
@@ -56,26 +52,49 @@ class ChartComponent extends React.Component {
                     <div className="chart-component component col-xs-12 " >
                         <NotifyResize onResize={this.resize.bind(this)} notifyOnMount={true} />
                         <div className="box">
-                            <div className="header col-xs-12">
-                                <span className="box-title">Site Traffic Overview</span>
+                            <div className="header col-xs-12 text-center">
+                                <span className="box-title ">Books data comparison</span>
                             </div>
                             <div className="header col-xs-12">
                                 <ResponsiveContainer height={this.state.chartHeight}>
                                     <AreaChart
                                         data={this.state.data}
-                                        margin={{ top: 15, right: 15, left: 15, bottom: 15 }}>
-                                        <XAxis dataKey="month" fontSize={11} />
-                                        <YAxis fontSize={11} tickCount={11} width={15} />
+                                        margin={{ top: 45, right: 45, left: 45, bottom: 45 }}>
+                                        <XAxis dataKey="name" fontSize={10} interval={0} />
+                                        <YAxis fontSize={10} tickCount={6} width={15} />
                                         <CartesianGrid stroke={grey} />
                                         <Tooltip labelStyle={{ fontSize: 14 }} itemStyle={{ fontSize: 14 }} />
+
                                         <Area
                                             type='monotone'
                                             dot={{ fill: blue, stroke: 'white', r: 3, fillOpacity: 1 }}
                                             activeDot={{ r: 5 }}
-                                            dataKey='views'
+                                            dataKey='totalPages'
                                             stroke={blue}
                                             fill={blue}
                                             fillOpacity={0.3}
+                                            stackId="3" 
+                                            animationEasing='linear'
+                                             />
+                                        <Area
+                                            type='monotone'
+                                            dot={{ fill: green, stroke: 'white', r: 3, fillOpacity: 1 }}
+                                            activeDot={{ r: 5 }}
+                                            dataKey='povCharacters'
+                                            stroke={green}
+                                            fill={green}
+                                            fillOpacity={0.3}
+                                            stackId="1" 
+                                            animationEasing='linear' />
+                                        <Area
+                                            type='monotone'
+                                            dot={{ fill: yellow, stroke: 'white', r: 3, fillOpacity: 1 }}
+                                            activeDot={{ r: 5 }}
+                                            dataKey='characters'
+                                            stroke={yellow}
+                                            fill={yellow}
+                                            fillOpacity={0.3}
+                                            stackId="2" 
                                             animationEasing='linear' />
                                     </AreaChart>
                                 </ResponsiveContainer>

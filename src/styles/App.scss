@@ -21,6 +21,7 @@ $spaceNum: 15;
 $chat-thumb-size: 80;
 
 $space: $spaceNum+px;
+$space-double: $spaceNum * 2 +px;
 $space-ver: $space 0;
 
 body{
@@ -30,6 +31,8 @@ body{
 
 .page-title{
     color: $color-text;
+    text-align: center;
+    margin: 60px auto;
 }
 .component{
     .box{
@@ -41,8 +44,8 @@ body{
         .header{
             font-size: 21px;
             color: $color-text;
-            padding-top: $space;
-            padding-bottom: $space;
+            padding-top: $space-double;
+            padding-bottom: $space-double;
             border-bottom: 1px solid $grey-lighter;
             i{
                 font-size: 26px;
