@@ -20,10 +20,21 @@ class AppComponent extends React.Component {
     }
 
     componentDidMount() {
+
+        Api.getChars()
+            .then((response) => {
+                console.log(response.headers.get('Link'))
+                console.log()
+                response.json().then((response) => {
+                    console.log(response)
+                })
+            })
+            .catch((error) => {
+                console.error(error);
+            })
         return (
             Api.getBooks()
                 .then((responseJson) => {
-                    console.log(responseJson)
                     this.setState({ data: responseJson, mounted: true });
                 })
                 .catch((error) => {
@@ -42,10 +53,10 @@ class AppComponent extends React.Component {
                         <HeaderComponent />
                     </div>
                     <div className="row">
-                        <WidgetsComponent books={this.state.data}/>
+                        <WidgetsComponent books={this.state.data} />
                     </div>
                     <div className="row">
-                        <ChartComponent books={this.state.data}/>
+                        <ChartComponent books={this.state.data} />
                     </div>
                     <div className="row">
                         <ChatComponent />

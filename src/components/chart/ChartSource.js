@@ -2,7 +2,6 @@ import Api from '../../sources/api';
 
 class ChartSource {
     static get = books => {
-        console.log(books)
 
         let data = books.map(book => {
             return { 
@@ -12,7 +11,6 @@ class ChartSource {
                 povCharacters: book.povCharacters.length
             }
         })
-        console.log(data)
         return data;
     }
 }

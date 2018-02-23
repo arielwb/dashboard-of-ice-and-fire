@@ -4,7 +4,7 @@ import React from 'react';
 import 'whatwg-fetch';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { NotifyResize } from 'react-notify-resize';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Label } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Label, Text } from 'recharts';
 
 import ChartSource from './ChartSource';
 import LoaderComponent from '../loader/LoaderComponent';
@@ -23,7 +23,7 @@ class ChartComponent extends React.Component {
 
     componentDidMount() {
         return (
-            this.setState({ data:  ChartSource.get(this.props.books), mounted: true })
+            this.setState({ data: ChartSource.get(this.props.books), mounted: true })
         )
     }
 
@@ -36,6 +36,14 @@ class ChartComponent extends React.Component {
     }
 
     render() {
+        const CustomizedAxisTick = React.createClass({
+            render() {
+                let width = this.props.width / this.props.visibleTicksCount;
+                console.log(this.props)
+                return (<Text width={width} x={this.props.x} y={this.props.y + 10} verticalAnchor="start" textAnchor="middle" fontSize={10} lineHeight={14}>{this.props.payload.value}</Text>);
+            }
+        });
+        console.log(CustomizedAxisTick)
         const blue = '#1EA7F8';
         const green = '#00C49F';
         const yellow = '#FFBB28';
@@ -60,7 +68,7 @@ class ChartComponent extends React.Component {
                                     <AreaChart
                                         data={this.state.data}
                                         margin={{ top: 45, right: 45, left: 45, bottom: 45 }}>
-                                        <XAxis dataKey="name" fontSize={10} interval={0} />
+                                        <XAxis dataKey="name" fontSize={10} interval={0} tick={<CustomizedAxisTick/>} />
                                         <YAxis fontSize={10} tickCount={6} width={15} />
                                         <CartesianGrid stroke={grey} />
                                         <Tooltip labelStyle={{ fontSize: 14 }} itemStyle={{ fontSize: 14 }} />
@@ -73,9 +81,9 @@ class ChartComponent extends React.Component {
                                             stroke={blue}
                                             fill={blue}
                                             fillOpacity={0.3}
-                                            stackId="3" 
+                                            stackId="3"
                                             animationEasing='linear'
-                                             />
+                                        />
                                         <Area
                                             type='monotone'
                                             dot={{ fill: green, stroke: 'white', r: 3, fillOpacity: 1 }}
@@ -84,7 +92,7 @@ class ChartComponent extends React.Component {
                                             stroke={green}
                                             fill={green}
                                             fillOpacity={0.3}
-                                            stackId="1" 
+                                            stackId="1"
                                             animationEasing='linear' />
                                         <Area
                                             type='monotone'
@@ -94,7 +102,7 @@ class ChartComponent extends React.Component {
                                             stroke={yellow}
                                             fill={yellow}
                                             fillOpacity={0.3}
-                                            stackId="2" 
+                                            stackId="2"
                                             animationEasing='linear' />
                                     </AreaChart>
                                 </ResponsiveContainer>
@@ -111,5 +119,7 @@ class ChartComponent extends React.Component {
         );
     }
 }
+
+
 
 module.exports = ChartComponent;

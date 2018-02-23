@@ -1,154 +1,146 @@
-
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 
 /*colors*/
+
 $grey-dark: #636468;
 $grey-light: #A0ADBA;
 $grey-lighter: #F4F4F4;
-
 $red: #F91D41;
 $blue: #1EA7F8;
 $orange: #FCB154;
 $green: #00B7A7;
-
 $color-text: $grey-dark;
 $color-text-accent: $grey-light;
 $color-light: white;
 
-
 /*spacing*/
+
 $spaceNum: 15;
 $chat-thumb-size: 80;
-
 $space: $spaceNum+px;
-$space-double: $spaceNum * 2 +px;
+$space-double: $spaceNum * 2+px;
 $space-ver: $space 0;
-
-body{
+body {
     background-color: #F1F4F7;
     font-family: 'Raleway', sans-serif;
 }
 
-.page-title{
+.page-title {
     color: $color-text;
     text-align: center;
     margin: 60px auto;
 }
-.component{
-    .box{
+
+.component {
+    .box {
         background-color: $color-light;
         border-radius: 5px;
         overflow: hidden;
         margin: $space-ver;
-        box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.2);
-        .header{
+        box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+        .header {
             font-size: 21px;
             color: $color-text;
             padding-top: $space-double;
             padding-bottom: $space-double;
             border-bottom: 1px solid $grey-lighter;
-            i{
+            i {
                 font-size: 26px;
-                margin-right: $space; 
+                margin-right: $space;
             }
         }
-    }  
+    }
 }
 
-
-
-.widgets-component{
-    .widget{
-        .icon{
+.widgets-component {
+    .widget {
+        .icon {
             padding: $space-ver;
             color: $color-light;
             text-align: center;
             font-size: 32px;
-            &.shopping-bag{
+            &.shopping-bag {
                 background-color: $blue;
             }
-            &.comment{
+            &.comment {
                 background-color: $orange;
             }
-            &.user{
+            &.user {
                 background-color: $green;
             }
-            &.tachometer{
+            &.tachometer {
                 background-color: $red;
             }
         }
     }
-
-    .data{
+    .data {
         text-align: center;
         padding: $space;
-        @media (min-width: 768px){
+        @media (min-width: 768px) {
             text-align: left;
         }
-        .count{
+        .count {
             font-size: 26px;
             line-height: 26px;
             color: $color-text;
         }
-        .legend{
+        .legend {
             font-size: 11px;
             color: $color-text-accent;
         }
     }
 }
 
-.chat-component{
-    .chat-messages{
-        max-height: 250px;
+.chat-component {
+    .chat-messages {
+        max-height: 350px;
         overflow-y: scroll;
-        .line{
+        .line {
             clear: both;
             margin: $space;
             position: relative;
             border-bottom: 1px solid $grey-lighter;
             min-height: $spaceNum+$chat-thumb-size+px;
-            .portrait{
+            .portrait {
                 width: $chat-thumb-size+px;
                 height: $chat-thumb-size+px;
                 border-radius: $chat-thumb-size+px;
                 overflow: hidden;
                 position: absolute;
                 top: 0;
-                img{
+                img {
                     max-width: 100%;
                 }
-                .fake-picture{
+                .fake-picture {
                     background-color: orange;
                     width: 100%;
                     height: 100%;
                 }
-                
             }
-            .message{
-                .user-info{
-                    .user-name{
+            .message {
+                .user-info {
+                    .user-name {
                         font-weight: bold;
-                        
-                    }
-                    .time{
-                        color: $color-text-accent;
-                        font-size: 10px;
-                        margin-left: $spaceNum/2+px;
                     }
                 }
-                .user-message{
+                .time {
+                    color: $color-text-accent;
+                    font-size: 10px;
+                }
+                .user-message {
                     color: $color-text;
+                    font-size: 28px
                 }
             }
-            &.display-left{
+            &.display-left {
                 padding-left: $spaceNum+$chat-thumb-size+px;
-                .portrait{
+                .portrait {
                     left: 0;
                 }
             }
-            &.display-right{
+            &.display-right {
                 padding-right: $spaceNum+$chat-thumb-size+px;
-                .portrait{
+                .portrait {
                     right: 0;
                 }
             }
@@ -156,18 +148,18 @@ body{
     }
 }
 
-.chat-form{
+.chat-form {
     padding: $space 60px $space $space;
     position: relative;
     border-top: 1px solid $grey-lighter;
     clear: both;
-    .form-control{
+    .form-control {
         display: inline-block;
         width: 100%;
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
     }
-    button{
+    button {
         display: inline-block;
         position: absolute;
         right: $space;
@@ -176,9 +168,9 @@ body{
         color: $color-light;
         background-color: $green;
         transition: all .3s ease-in-out;
-        &:hover{
+        &:hover {
             background-color: darken($green, 15%);
-            color: $color-light ;
+            color: $color-light;
         }
     }
 }
@@ -207,15 +199,15 @@ body{
     }
 }
 
-.loader{
+.loader {
     text-align: center;
-    &.app{
+    &.app {
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate3d(-50%,-50%,0);
+        transform: translate3d(-50%, -50%, 0);
     }
-    .fa-spinner{
+    .fa-spinner {
         margin: $space-ver;
         color: $grey-light;
     }
