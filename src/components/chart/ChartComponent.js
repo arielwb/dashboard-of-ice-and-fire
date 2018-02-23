@@ -43,7 +43,6 @@ class ChartComponent extends React.Component {
                 return (<Text width={width} x={this.props.x} y={this.props.y + 10} verticalAnchor="start" textAnchor="middle" fontSize={10} lineHeight={14}>{this.props.payload.value}</Text>);
             }
         });
-        console.log(CustomizedAxisTick)
         const blue = '#1EA7F8';
         const green = '#00C49F';
         const yellow = '#FFBB28';
