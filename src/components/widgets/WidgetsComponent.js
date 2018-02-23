@@ -17,22 +17,22 @@ class WidgetsComponent extends React.Component {
                 books: {
                     count: 0,
                     label: "Total books",
-                    icon: "shopping-bag",
+                    icon: "book",
                 },
                 characters: {
                     count: 0,
                     label: "Total characters",
-                    icon: "shopping-bag",
+                    icon: "users",
                 },
                 totalPages: {
                     count: 0,
                     label: "Total pages",
-                    icon: "shopping-bag",
+                    icon: "file",
                 },
                 povCharacters: {
                     count: 0,
                     label: "Total POV characters",
-                    icon: "shopping-bag",
+                    icon: "address-book",
                 }
             },
             mounted: false

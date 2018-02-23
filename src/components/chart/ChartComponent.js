@@ -39,7 +39,6 @@ class ChartComponent extends React.Component {
         const CustomizedAxisTick = React.createClass({
             render() {
                 let width = this.props.width / this.props.visibleTicksCount;
-                console.log(this.props)
                 return (<Text width={width} x={this.props.x} y={this.props.y + 10} verticalAnchor="start" textAnchor="middle" fontSize={10} lineHeight={14}>{this.props.payload.value}</Text>);
             }
         });

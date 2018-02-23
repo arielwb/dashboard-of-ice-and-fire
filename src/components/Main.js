@@ -5,6 +5,7 @@ import React from 'react';
 import WidgetsComponent from './widgets/WidgetsComponent';
 import ChartComponent from './chart/ChartComponent';
 import ChatComponent from './chat/ChatComponent';
+import WeaponsComponent from './weapons/WeaponsComponent';
 import HeaderComponent from './header/HeaderComponent';
 
 import Api from '../sources/api';
@@ -60,6 +61,7 @@ class AppComponent extends React.Component {
                     </div>
                     <div className="row">
                         <ChatComponent />
+                        <WeaponsComponent />
                     </div>
                 </div>
             );

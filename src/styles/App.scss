@@ -59,16 +59,16 @@ body {
             color: $color-light;
             text-align: center;
             font-size: 32px;
-            &.shopping-bag {
+            &.book {
                 background-color: $blue;
             }
-            &.comment {
+            &.users {
                 background-color: $orange;
             }
-            &.user {
+            &.file {
                 background-color: $green;
             }
-            &.tachometer {
+            &.address-book {
                 background-color: $red;
             }
         }
