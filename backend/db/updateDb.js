@@ -1,8 +1,6 @@
 
 DatabaseProvider = require('./DatabaseProvider').DatabaseProvider;
-const https = require('https');
 const axios = require('axios');
-
 
 const apiOfFire = "https://www.anapioficeandfire.com/api/"
 const maxPage = "pageSize=50"
