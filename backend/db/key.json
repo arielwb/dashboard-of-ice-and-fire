@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "dashboard-of-ice-and-fire",
+  "private_key_id": "fcd247b8196d2520e9b5a0b284c1290dadabc35d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCTTfe54gzZNOzE\ne3zOlrmOG8hXVSYm75d2BVTn3TcGNqZE9hwYbGjh4As5bjSrtVJwizwZjFKroNQw\nBjKy6GsBTsyTSf2jc3rDAr5uA63w2SeeQCMzGnuDrpg0PttNLmDou4gdRDNUmhPT\nIXHS7g8C0GIjthwAS7yvr+M1+Ygvv7ioutabt3acv9wCKjiWPncsyaF7HJHBt9NO\nys65MiaOdnE7Yf0715ZQWSKTCxWUXcfqMVWJFZBCmDy1J8fNBdw28+wXlmKZS3An\njwDIC+1xeHV2TFE2VEhSXCja8LXDTTsItNfV8DsLctUs2f7jzhTDFT5nyF1qWKDt\nTTvvGp8jAgMBAAECggEAPWOacKjRAvqoC/CM4In3Nc7FTQQq/MIQJLrvGhxasKe4\n3neU2ObhRPU6qEoSAFd2TnnwZ5NP5sAFfigvG9l5stdUsbN91Y8sY7Yyh6XX6U6O\n0MhZAxSv0f7C5s8lVQKVl5iEDvJb1A/MYEqJZccZkWon5EsiW0s1DSDnt5hRVdhW\ncBGrgZZRBentb0EfGRNBC7Omrf51q/wOwcHNesdPMndlsFKHm7YfaaTXcdpkj1zV\niVz992HKqIiZGkbNy8sjuS/O9ipqVBC/1bfUm2SCLTkVjIm/TJzfM9NGDYJpjT7O\noJ/fmlsyv8EzSNdQoopmuwlK+3LCwxz8G1Os+afUgQKBgQDCoTuVLCJykSFVVwtF\n9/xNGdG9IB8oGvPxxfjwyQeoz1guOinOwc2rBBFGzUFVWuP1J1VQfCm1TWR5IYOa\n6dBn7czCvg7mvxzYrgvUV08uUTjvlZR/yaqjY01RleRiLMPKjVmFj7yBouj12CKV\n0jySJ3Q+b45h/BDLXdGTSBF8gQKBgQDBwJR5seNqSxMspzUG9xLcxU1EXv2o1wsX\nD4mOhlBi7rkIKxwqk0X8HYVny0Nw+mWG6bvTOFlC4L0RV0oZo6CvlLom9IWz9sJx\nOntse+ZCSh6bbNik0daAH8w7muG3XxoCeyLuaYMSBDSuS7LdX/RWJwKFZFnix+5W\nuhJAfe/ZowKBgQDBscAgVwn5RqIL0lKv0XpQKO/o7jzTpu87oDB9QTPUNnWlm9Db\nqVhLaALhmYf5sDjJU9m9/bNscZcaTdYxp5v2slxjOs6NqYjFw4CWVEXC7KZjGVPu\nUP73F+5s0WW2pqI7xKxhFYke4shBUlYpEE+jjIxNTqw+q6LzIW1ezAxLAQKBgBpl\nw5TlAKf9vIoL6fSd+wrrMsDK9GJpkhA9RK+PaypffgQ342mFkTZtSzy9+91LsEN2\nWunHNpofBoNzUhw2J/FkIQynqgO/7fQBVMmOA+wqLwtcBBRIpqHkMy43xuL16RRH\ndJXo+DufKRJKK/9vUFngjL5h0sFMHhPg3BW/UstjAoGAcvZLRFC1+2D/l4d2znNP\n4XR/06JEykLQwJZEboGNq/HPzEu1yp6DHqMXPaN2emyeuATtsXt5o9u/sFo/FYpG\nRFwLqPfggOTrlHLjJ+0ioA9YHbHMnYI0Z+fpABoy+UJYFyzmu21LDYBG7EYdbMc8\nJC2R+a3s58t7pLrZwaPdOi0=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-j5772@dashboard-of-ice-and-fire.iam.gserviceaccount.com",
+  "client_id": "116658696978186391809",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-j5772%40dashboard-of-ice-and-fire.iam.gserviceaccount.com"
+}
