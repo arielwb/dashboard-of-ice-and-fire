@@ -1,30 +1,43 @@
 
 DatabaseProvider = require('./DatabaseProvider').DatabaseProvider;
+const FirebaseProvider = require('./FirebaseProvider').FirebaseProvider;
 const axios = require('axios');
 
 
-let db = new DatabaseProvider(() => {
+const fb = new FirebaseProvider();
+const db = new DatabaseProvider(() => {
     initQuery();
 });
 
 const initQuery = () => {
-    //buildWidgetData();
+    buildWidgetData();
     buildGraphData();
+    buildHouseWords();
+    buildAncestralWeapons();
+    buildCultureStats();
+    buildGenderStats();
 }
 
 const buildWidgetData = () => {
-    // count books
-    db.count('books', {}, (data) => console.log(data))
-    //count pov chars
-    db.distinct('books', 'povCharacters', (data) => console.log(data.length))
-    //count chars
-    db.count('characters', {}, (data) => console.log(data))
-    // pages chars
-    db.sum('books', '$numberOfPages', (data) => console.log(data))
+    db.getWidgetsData((data) => fb.set('booksStats/', data[0]))
 }
 
 const buildGraphData = () => {
-    // count books
-    db.simplePipeline('books',  (data) => console.log(data))
-    
+    db.getBooksData((data) => fb.set('booksData/', data))
+}
+
+const buildHouseWords = () => {
+    db.getWords((data) => fb.set('houseWords/', data))
+}
+
+const buildAncestralWeapons = () => {
+    db.getWeapons((data) => fb.set('houseWeapons/', data))
+}
+
+const buildGenderStats = () => {
+    db.getGenderStats((data) => fb.set('genderStats/', data[0]))
+}
+
+const buildCultureStats = () => {
+    db.getCultureStats((data) => fb.set('genderCultureData/', data[0]))
 }
