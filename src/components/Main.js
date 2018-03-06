@@ -1,15 +1,13 @@
 require('normalize.css/normalize.css');
 require('styles/App.scss');
+
 import React from 'react';
 
 import WidgetsComponent from './widgets/WidgetsComponent';
 import ChartComponent from './chart/ChartComponent';
-import ChatComponent from './chat/ChatComponent';
+import WordsComponent from './words/WordsComponent';
 import WeaponsComponent from './weapons/WeaponsComponent';
 import HeaderComponent from './header/HeaderComponent';
-
-import Api from '../sources/api';
-
 
 class AppComponent extends React.Component {
 
@@ -21,19 +19,8 @@ class AppComponent extends React.Component {
     }
 
     componentDidMount() {
-
-        // let data = Api.getBooks();
-        // console.log(data)
         return (
-            
-            Api.getBooks()
-                .then((responseJson) => {
-                    this.setState({ data: responseJson, mounted: true });
-                })
-                .catch((error) => {
-                    console.error(error);
-                })
-            // this.setState({ data: data, mounted: true })
+            this.setState({  mounted: true })
         )
     }
 
@@ -52,7 +39,7 @@ class AppComponent extends React.Component {
                         <ChartComponent books={this.state.data} />
                     </div>
                     <div className="row">
-                        <ChatComponent />
+                        <WordsComponent />
                         <WeaponsComponent />
                     </div>
                 </div>

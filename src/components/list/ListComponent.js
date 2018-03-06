@@ -8,7 +8,6 @@ import LoaderComponent from '../loader/LoaderComponent';
 class ListComponent extends React.Component {
     constructor(props) {
         super(props);
-        console.log(props)
         this.state = {
             title: "",
             iconTitle: "",
@@ -18,14 +17,10 @@ class ListComponent extends React.Component {
 
     componentDidMount() {
         let p = this.props;
-        console.log(p)
         return (this.setState({ title: p.title, iconTitle: p.iconTitle, mounted: true }))
     }
 
     render() {
-        console.log(this.state);
-
-
         let content = <LoaderComponent />;
         if (this.state.mounted) {
 

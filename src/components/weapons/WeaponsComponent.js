@@ -8,6 +8,7 @@ import Api from '../../sources/api';
 import LoaderComponent from '../loader/LoaderComponent';
 import ListComponent from '../list/ListComponent';
 import ListLineComponent from '../list/ListLineComponent';
+import WeaponsSource from './WeaponsSource';
 
 class WeaponsComponent extends React.Component {
     constructor(props) {
@@ -20,10 +21,9 @@ class WeaponsComponent extends React.Component {
 
     componentDidMount() {
         return (
-            Api.getWepons()
+            WeaponsSource.get()
                 .then((responseJson) => {
                    
-
                     let componentData = {
                         title: "House Ancestral Weapons",
                         iconTitle: "fa-shield",

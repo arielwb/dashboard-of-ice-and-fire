@@ -8,7 +8,6 @@ import LoaderComponent from '../loader/LoaderComponent';
 class ListLineComponent extends React.Component {
     constructor(props) {
         super(props);
-        console.log(props)
         this.state = {
             title: "",
             subtitle: "",
@@ -19,7 +18,6 @@ class ListLineComponent extends React.Component {
 
     componentDidMount() {
         let p = this.props;
-        console.log(p)
         return (this.setState(
             {
                 title: p.title,
@@ -30,8 +28,6 @@ class ListLineComponent extends React.Component {
     }
 
     render() {
-        console.log(this.state);
-
         let content = <LoaderComponent />;
         if (this.state.mounted) {
 
@@ -72,9 +68,6 @@ class ListLineComponent extends React.Component {
             </div>
         );
     }
-
-
-
 
 }
 

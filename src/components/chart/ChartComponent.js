@@ -8,7 +8,8 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 
 import ChartSource from './ChartSource';
 import LoaderComponent from '../loader/LoaderComponent';
-import Api from '../../sources/api';
+
+
 class ChartComponent extends React.Component {
 
     constructor(props) {
@@ -23,9 +24,11 @@ class ChartComponent extends React.Component {
 
     componentDidMount() {
         return (
-            Api.get('https://dashboard-of-ice-and-fire.firebaseio.com/booksData.json')
-            .then( (data) => this.setState({ data: ChartSource.get(data), mounted: true }))
-            
+            ChartSource.get()
+                .then((data) => {
+                    console.log(data)
+                    this.setState({ data: data, mounted: true })
+                })
         )
     }
 
@@ -68,7 +71,7 @@ class ChartComponent extends React.Component {
                                     <AreaChart
                                         data={this.state.data}
                                         margin={{ top: 45, right: 45, left: 45, bottom: 45 }}>
-                                        <XAxis dataKey="name" fontSize={10} interval={0} tick={<CustomizedAxisTick/>} />
+                                        <XAxis dataKey="name" fontSize={10} interval={0} tick={<CustomizedAxisTick />} />
                                         <YAxis fontSize={10} tickCount={6} width={15} />
                                         <CartesianGrid stroke={grey} />
                                         <Tooltip labelStyle={{ fontSize: 14 }} itemStyle={{ fontSize: 14 }} />
@@ -77,7 +80,7 @@ class ChartComponent extends React.Component {
                                             type='monotone'
                                             dot={{ fill: blue, stroke: 'white', r: 3, fillOpacity: 1 }}
                                             activeDot={{ r: 5 }}
-                                            dataKey='totalPages'
+                                            dataKey='numberOfPages'
                                             stroke={blue}
                                             fill={blue}
                                             fillOpacity={0.3}
@@ -88,7 +91,7 @@ class ChartComponent extends React.Component {
                                             type='monotone'
                                             dot={{ fill: green, stroke: 'white', r: 3, fillOpacity: 1 }}
                                             activeDot={{ r: 5 }}
-                                            dataKey='povCharacters'
+                                            dataKey='totalPovChars'
                                             stroke={green}
                                             fill={green}
                                             fillOpacity={0.3}
@@ -98,7 +101,7 @@ class ChartComponent extends React.Component {
                                             type='monotone'
                                             dot={{ fill: yellow, stroke: 'white', r: 3, fillOpacity: 1 }}
                                             activeDot={{ r: 5 }}
-                                            dataKey='characters'
+                                            dataKey='totalChars'
                                             stroke={yellow}
                                             fill={yellow}
                                             fillOpacity={0.3}
