@@ -1,6 +1,11 @@
 import 'whatwg-fetch';
 
 class Api {
+    
+
+    // static get = path => {
+    //     return firebase.database().ref(path);
+    // }
     static get = path => {
         return fetch(path).then((response) => response.json());
     }
@@ -10,11 +15,11 @@ class Api {
     }
 
     static getBooks = () => {
-        return Api.get('https://www.anapioficeandfire.com/api/books?pageSize=50');
+        return Api.get('https://dashboard-of-ice-and-fire.firebaseio.com/booksStats.json');
     }
     
     static getWepons = () => {
-        return Api.get('https://www.anapioficeandfire.com/api/houses?pageSize=50&hasAncestralWeapons=true');
+        return Api.get('https://dashboard-of-ice-and-fire.firebaseio.com/houseWeapons.json');
     }
     
     static getChars = (pageNumber) => {

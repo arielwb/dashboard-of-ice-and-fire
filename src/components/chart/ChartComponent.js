@@ -8,7 +8,7 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 
 import ChartSource from './ChartSource';
 import LoaderComponent from '../loader/LoaderComponent';
-
+import Api from '../../sources/api';
 class ChartComponent extends React.Component {
 
     constructor(props) {
@@ -23,7 +23,9 @@ class ChartComponent extends React.Component {
 
     componentDidMount() {
         return (
-            this.setState({ data: ChartSource.get(this.props.books), mounted: true })
+            Api.get('https://dashboard-of-ice-and-fire.firebaseio.com/booksData.json')
+            .then( (data) => this.setState({ data: ChartSource.get(data), mounted: true }))
+            
         )
     }
 

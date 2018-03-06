@@ -9,6 +9,7 @@ import LoaderComponent from '../loader/LoaderComponent';
 import ListComponent from '../list/ListComponent';
 import ListLineComponent from '../list/ListLineComponent';
 
+
 class ChatComponent extends React.Component {
     constructor(props) {
         super(props);

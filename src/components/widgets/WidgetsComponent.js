@@ -40,8 +40,14 @@ class WidgetsComponent extends React.Component {
     }
 
     componentDidMount() {
+        let data = this.state.data;
+        let stats = this.props.books; 
+        data.books.count = stats.books;
+        data.characters.count = stats.charCount;
+        data.totalPages.count = stats.totalPages;
+        data.povCharacters.count = stats.povCount;
         return (
-            this.setState({ data: WidgetsSource.get(this.props.books, this.state.data), mounted: true })
+            this.setState({ data: data, mounted: true })
         )
     }
 

@@ -22,18 +22,10 @@ class AppComponent extends React.Component {
 
     componentDidMount() {
 
-        Api.getChars()
-            .then((response) => {
-                console.log(response.headers.get('Link'))
-                console.log()
-                response.json().then((response) => {
-                    console.log(response)
-                })
-            })
-            .catch((error) => {
-                console.error(error);
-            })
+        // let data = Api.getBooks();
+        // console.log(data)
         return (
+            
             Api.getBooks()
                 .then((responseJson) => {
                     this.setState({ data: responseJson, mounted: true });
@@ -41,7 +33,7 @@ class AppComponent extends React.Component {
                 .catch((error) => {
                     console.error(error);
                 })
-            // this.setState({ mounted: true })
+            // this.setState({ data: data, mounted: true })
         )
     }
 
