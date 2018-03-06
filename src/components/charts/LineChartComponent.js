@@ -6,11 +6,9 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { NotifyResize } from 'react-notify-resize';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Label, Text } from 'recharts';
 
-import ChartSource from './ChartSource';
 import LoaderComponent from '../loader/LoaderComponent';
 
-
-class ChartComponent extends React.Component {
+class LineChartComponent extends React.Component {
 
     constructor(props) {
         super(props);
@@ -24,11 +22,8 @@ class ChartComponent extends React.Component {
 
     componentDidMount() {
         return (
-            ChartSource.get()
-                .then((data) => {
-                    console.log(data)
-                    this.setState({ data: data, mounted: true })
-                })
+            this.setState({ data: this.props.data, mounted: true })
+
         )
     }
 
@@ -44,14 +39,20 @@ class ChartComponent extends React.Component {
         const CustomizedAxisTick = React.createClass({
             render() {
                 let width = this.props.width / this.props.visibleTicksCount;
-                return (<Text width={width} x={this.props.x} y={this.props.y + 10} verticalAnchor="start" textAnchor="middle" fontSize={10} lineHeight={14}>{this.props.payload.value}</Text>);
+                let angle = 0;
+                let extraY = 10;
+                if(width < 40){
+                    angle = 320;
+                    extraY = 15;
+                }
+                return (<Text width={width} x={this.props.x} y={this.props.y + extraY} verticalAnchor="start" angle={angle} textAnchor="middle" fontSize={10} lineHeight={10}>{this.props.payload.value}</Text>);
             }
         });
-        const blue = '#1EA7F8';
-        const green = '#00C49F';
-        const yellow = '#FFBB28';
-        const grey = '#F4F4F4';
+
         let content = <LoaderComponent />;
+
+        const grey = '#F4F4F4';
+
         if (this.state.mounted) {
             content = (
                 <ReactCSSTransitionGroup
@@ -64,49 +65,36 @@ class ChartComponent extends React.Component {
                         <NotifyResize onResize={this.resize.bind(this)} notifyOnMount={true} />
                         <div className="box">
                             <div className="header col-xs-12 text-center">
-                                <span className="box-title ">Books data comparison</span>
+                                <span className="box-title ">{this.props.title}</span>
                             </div>
                             <div className="header col-xs-12">
                                 <ResponsiveContainer height={this.state.chartHeight}>
                                     <AreaChart
                                         data={this.state.data}
                                         margin={{ top: 45, right: 45, left: 45, bottom: 45 }}>
-                                        <XAxis dataKey="name" fontSize={10} interval={0} tick={<CustomizedAxisTick />} />
+                                        <XAxis dataKey={this.props.xAxisKey} fontSize={10} interval={0} tick={<CustomizedAxisTick />} />
                                         <YAxis fontSize={10} tickCount={6} width={15} />
                                         <CartesianGrid stroke={grey} />
                                         <Tooltip labelStyle={{ fontSize: 14 }} itemStyle={{ fontSize: 14 }} />
+                                        {
+                                            this.props.areaKeys.map((area, index) => {
+                                                return (
+                                                    <Area
+                                                        type='monotone'
+                                                        dot={{ fill: area.color, stroke: 'white', r: 3, fillOpacity: 1 }}
+                                                        activeDot={{ r: 5 }}
+                                                        dataKey={area.key}
+                                                        stroke={area.color}
+                                                        fill={area.color}
+                                                        fillOpacity={0.3}
+                                                        stackId={index}
+                                                        animationEasing='linear'
+                                                        key={index}
+                                                    />
+                                                )
+                                            })
+                                        }
 
-                                        <Area
-                                            type='monotone'
-                                            dot={{ fill: blue, stroke: 'white', r: 3, fillOpacity: 1 }}
-                                            activeDot={{ r: 5 }}
-                                            dataKey='numberOfPages'
-                                            stroke={blue}
-                                            fill={blue}
-                                            fillOpacity={0.3}
-                                            stackId="3"
-                                            animationEasing='linear'
-                                        />
-                                        <Area
-                                            type='monotone'
-                                            dot={{ fill: green, stroke: 'white', r: 3, fillOpacity: 1 }}
-                                            activeDot={{ r: 5 }}
-                                            dataKey='totalPovChars'
-                                            stroke={green}
-                                            fill={green}
-                                            fillOpacity={0.3}
-                                            stackId="1"
-                                            animationEasing='linear' />
-                                        <Area
-                                            type='monotone'
-                                            dot={{ fill: yellow, stroke: 'white', r: 3, fillOpacity: 1 }}
-                                            activeDot={{ r: 5 }}
-                                            dataKey='totalChars'
-                                            stroke={yellow}
-                                            fill={yellow}
-                                            fillOpacity={0.3}
-                                            stackId="2"
-                                            animationEasing='linear' />
                                     </AreaChart>
                                 </ResponsiveContainer>
                             </div>
@@ -125,4 +113,4 @@ class ChartComponent extends React.Component {
 
 
 
-module.exports = ChartComponent;
+module.exports = LineChartComponent;

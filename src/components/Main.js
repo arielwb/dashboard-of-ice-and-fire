@@ -4,10 +4,12 @@ require('styles/App.scss');
 import React from 'react';
 
 import WidgetsComponent from './widgets/WidgetsComponent';
-import ChartComponent from './chart/ChartComponent';
+import BooksChartComponent from './booksChart/BooksChartComponent';
 import WordsComponent from './words/WordsComponent';
 import WeaponsComponent from './weapons/WeaponsComponent';
 import HeaderComponent from './header/HeaderComponent';
+import GenderChartComponent from './genderChart/GenderChartComponent';
+import GenderStatsComponent from './genderStats/GenderStatsComponent';
 
 class AppComponent extends React.Component {
 
@@ -20,27 +22,40 @@ class AppComponent extends React.Component {
 
     componentDidMount() {
         return (
-            this.setState({  mounted: true })
+            this.setState({ mounted: true })
         )
     }
 
     render() {
         var content = <div className="loader app"><i className="fa fa-spinner fa-pulse fa-3x fa-fw"></i></div>;
         if (this.state.mounted) {
+            const blue = '#1EA7F8';
+            const green = '#00C49F';
+            const yellow = '#FFBB28';
+            let area = [
+                { color: green, key: 'female' },
+                { color: yellow, key: 'male' },
+            ]
             content = (
                 <div>
-                    <div className="row">
+                    <div >
                         <HeaderComponent />
                     </div>
                     <div className="row">
                         <WidgetsComponent books={this.state.data} />
                     </div>
                     <div className="row">
-                        <ChartComponent books={this.state.data} />
+                        <BooksChartComponent />
                     </div>
                     <div className="row">
                         <WordsComponent />
                         <WeaponsComponent />
+                    </div>
+                    <div className="row">
+                        <GenderChartComponent />
+                    </div>
+                    <div className="row">
+                        <GenderStatsComponent />
                     </div>
                 </div>
             );
