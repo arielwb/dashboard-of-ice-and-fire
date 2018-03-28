@@ -10,6 +10,7 @@ import WeaponsComponent from './weapons/WeaponsComponent';
 import HeaderComponent from './header/HeaderComponent';
 import GenderChartComponent from './genderChart/GenderChartComponent';
 import GenderStatsComponent from './genderStats/GenderStatsComponent';
+import GenderCultureComponent from './genderCulture/GenderCultureComponent';
 
 class AppComponent extends React.Component {
 
@@ -38,7 +39,7 @@ class AppComponent extends React.Component {
             ]
             content = (
                 <div>
-                    <div >
+                    <div className="row">
                         <HeaderComponent />
                     </div>
                     <div className="row">
@@ -53,6 +54,9 @@ class AppComponent extends React.Component {
                     </div>
                     <div className="row">
                         <GenderChartComponent />
+                    </div>
+                    <div className="row">
+                        <GenderCultureComponent />
                     </div>
                     <div className="row">
                         <GenderStatsComponent />

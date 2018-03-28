@@ -10,7 +10,7 @@ class HeaderComponent extends React.Component {
 
     render() {
         return (
-            <div className="row">
+            <div>
                 <nav className="navbar navbar-default">
                     <div className="container">
                         <div className="navbar-header">

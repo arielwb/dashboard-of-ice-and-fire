@@ -16,7 +16,8 @@ class BarChartComponent extends React.Component {
         this.state = {
             chartHeight: 0,
             data: [],
-            mounted: false
+            mounted: false,
+            isVertical: this.props.data.length > 10
         };
 
     }
@@ -30,20 +31,30 @@ class BarChartComponent extends React.Component {
 
     resize({ width }) {
         setTimeout(() => {
-            let chartHeight = width > 752 ? 250 : 150;
-            chartHeight = width > 1184 ? 400 : chartHeight;
+            let chartHeight = 0;
+            console.log(width)
+            if(this.state.isVertical){
+                chartHeight = width > 752 ?  600 : 300;
+                chartHeight = width > 1184 ? 800 : chartHeight;
+            }
+            else{
+                chartHeight = width > 752 ?  300 : 150;
+                chartHeight = width > 1184 ?  400 : chartHeight;
+            }
             this.setState({ 'chartHeight': chartHeight });
         }, 50)
     }
 
     render() {
 
-
         let content = <LoaderComponent />;
 
         const grey = '#F4F4F4';
 
         if (this.state.mounted) {
+
+            let orientation = this.state.isVertical ? "vertical" : "horizontal";
+
             content = (
                 <ReactCSSTransitionGroup
                     transitionName="animation"
@@ -59,10 +70,12 @@ class BarChartComponent extends React.Component {
                             </div>
                             <div className="header col-xs-12">
                                 <ResponsiveContainer height={this.state.chartHeight}>
-                                    <BarChart data={this.state.data}>
+                                    <BarChart layout={orientation} data={this.state.data}  >
                                         <CartesianGrid stroke={grey} />
-                                        <XAxis dataKey={this.props.xAxisKey} fontSize={10} />
-                                        <YAxis fontSize={10} />
+                                        {this.state.isVertical ? <XAxis type="number" fontSize={10}  ></XAxis> : <XAxis dataKey={this.props.xAxisKey} fontSize={10}  ></XAxis>}
+                                        {this.state.isVertical ? <YAxis dataKey={this.props.xAxisKey} interval={0}  type="category" fontSize={10}  ></YAxis> : <YAxis fontSize={10} ></YAxis>}
+
+
                                         <Tooltip labelStyle={{ fontSize: 14 }} itemStyle={{ fontSize: 14 }} />
                                         <Legend />
                                         {
